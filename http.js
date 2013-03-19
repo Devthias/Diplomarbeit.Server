@@ -1,6 +1,5 @@
 var http = require('http'),
- 	router = require('./routes'),
- 	express = require('express');
+ 	router = require('./routes');
 
 var router = router.createRouter();
 
@@ -14,6 +13,6 @@ http.createServer(function (request, response) {
             response.end(result.body);
         });
     });
-}).listen(3000);
+}).listen(8888);
 
 console.log('Server running on http://127.0.0.1:3000');
