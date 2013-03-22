@@ -1,18 +1,25 @@
 var http = require('http'),
- 	router = require('./routes');
+  connect = require('connect'),
+  router = require('./router'),
+  authenticator = require('./authenticator');
 
 var router = router.createRouter();
+var app = connect();
 
-http.createServer(function (request, response) {
-    var body = "";
+app.use('auth', connect.basicAuth(authenticator.authenticateUser));
 
-    request.addListener('data', function (chunk) { body += chunk });
-    request.addListener('end', function () {
-        router.handle(request, body, function (result) {
-            response.writeHead(result.status, result.headers);
-            response.end(result.body);
+app.use(function(req, res, next){
+  var body = "";
+
+    req.addListener('data', function (chunk) { body += chunk });
+    req.addListener('end', function () {
+        router.handle(req, body, function (result) {
+            res.writeHead(result.status, result.headers);
+            res.end(result.body);
         });
     });
-}).listen(8888);
+});
+
+http.createServer(app).listen(3000);
 
 console.log('Server running on http://127.0.0.1:3000');

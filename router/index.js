@@ -11,31 +11,31 @@ exports.createRouter = function(){
 			console.log('root called...');
 			res.send("Welcome to my application")
 		});
-		this.get('/language').bind(function (req, res){
+		this.get('/auth/language').bind(function (req, res){
 			res.send(repository.language.loadAll());
 		});
-		this.put('/booking').bind(function (req, res){
+		this.put('/auth/booking').bind(function (req, res){
 			res.send(repository.booking.makeBooking());
 		});
-		this.put('/absence/daily').bind(function (req, res){
+		this.put('/auth/absence/daily').bind(function (req, res){
 			res.send(repository.absence.createDailyAbsence());
 		});
-		this.put('/absence/time').bind(function (req, res){
+		this.put('/auth/absence/time').bind(function (req, res){
 			res.send(repository.absence.createTimeAbsence());
 		});
-		this.put('/request/daily').bind(function (req, res){
+		this.put('/auth/request/daily').bind(function (req, res){
 			res.send(repository.request.createDailyRequest());
 		});
-		this.put('/request/time').bind(function (req, res){
+		this.put('/auth/request/time').bind(function (req, res){
 			res.send(repository.request.createTimeRequest());
 		});
-		this.get('/request/{id}').bind(function (req, res){
+		this.get('/auth/request/{id}').bind(function (req, res){
 			res.send(repository.request.loadRequests());
 		});
-		this.get('/user/login').bind(function (req, res){
+		this.get('/auth/user/login').bind(function (req, res){
 			res.send(repository.user.login());
 		});
-		this.get('/user/work').bind(function (req, res){
+		this.get('/auth/user/work').bind(function (req, res){
 			res.send(repository.user.getWork());
 		});
 	});
