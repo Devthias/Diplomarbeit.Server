@@ -1,5 +1,4 @@
-
 exports.authenticateUser = function(user, pass){
 	console.log('authenticator called...');
-	return true;
+	return user === 'user' && pass ==='1234';
 };

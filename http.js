@@ -1,12 +1,16 @@
 var http = require('http'),
-  connect = require('connect'),
+  express = require('express'),
   router = require('./router'),
+  models = require('./models'),
+  repository = require('./repository'),
   authenticator = require('./authenticator');
 
-var router = router.createRouter();
-var app = connect();
+var router = router.createRouter(models);
+var app = express();
 
-app.use('auth', connect.basicAuth(authenticator.authenticateUser));
+GLOBAL.repository = repository;
+
+app.use('/auth', express.basicAuth(authenticator.authenticateUser));
 
 app.use(function(req, res, next){
   var body = "";
@@ -14,12 +18,9 @@ app.use(function(req, res, next){
     req.addListener('data', function (chunk) { body += chunk });
     req.addListener('end', function () {
         router.handle(req, body, function (result) {
-            res.writeHead(result.status, result.headers);
-            res.end(result.body);
+            res.jsonp(result.body);
         });
     });
 });
 
 http.createServer(app).listen(3000);
-
-console.log('Server running on http://127.0.0.1:3000');
