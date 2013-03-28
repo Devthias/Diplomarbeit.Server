@@ -31,24 +31,24 @@ User.prototype.username = "";
 
 User.prototype.password = "";
 
-User.prototype.SelectAll = function(callback){
+User.prototype.SelectAll = function(res, callback){
 	repository.Write('SELECT * FROM user', function(result){
 		console.log(result);
-		callback(result);
+		console.log(res);
+		callback(res, result);
 	});
 };
 
-User.prototype.SelectByID = function(id, callback){
+User.prototype.SelectByID = function(res, id, callback){
 	repository.Write('SELECT * FROM user WHERE ID ='+id, function(result){
 		console.log(result);
-		callback(result);
+		callback(res, result);
 	});
 };
 
-User.prototype.Insert = function(data, callback){
-		console.log('Called');
+User.prototype.Insert = function(res, data, callback){
 		console.log(data);
-		callback("test");
+		callback(res, "test");
 };
 
 module.exports = User;

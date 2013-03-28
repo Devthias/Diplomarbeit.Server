@@ -13,27 +13,25 @@ exports.createRouter = function(models){
 		this.get('/auth/user').bind(function (req, res){
 			var user = new models.user();
 
-			user.SelectAll(function(result){
-				res.send(JSON.stringify(result));
-			});
+			user.SelectAll(res, callback);
 		});
 		this.get(/^auth\/user\/([0-9]+)$/).bind(function (req, res, id){
 			var user = new models.user();
 
-			user.SelectByID(id, function(result){
-				res.send(JSON.stringify(result));
-			});
+			user.SelectByID(res, id, callback);
 		});
 		this.post('/auth/user').bind(function (req, res, data){
 			var user = new models.user(data);
 
 			console.log(user);
 
-			user.Insert(user, function(result){
-				res.send(JSON.stringify(result));
-			});
+			user.Insert(res, user, callback);
 		});
 	});
+
+	var callback = function(res, result){
+		res.send(JSON.stringify(result));
+	}
 
 	return router;
 };
