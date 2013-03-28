@@ -2,7 +2,6 @@ var journey = require('journey');
 
 exports.createRouter = function(models){
 	var router = new (journey.Router)();
-	var models = models;
 
 	console.log('Creating Router...');
 

@@ -1,17 +1,8 @@
-var User = function(){
-	var parameters = {};
+var modelBase = require('./modelBase');
 
-	if(arguments[0]) parameters = arguments[0];
+var User = function(){};
 
-	console.log('User: ');
-	console.log(User.prototype);
-
-	for(var index in User.prototype){
-		if(parameters[index]){
-			this[index] = parameters[index];
-		}
-	}
-};
+User.prototype = new modelBase();
 
 User.prototype.id = 0;
 
