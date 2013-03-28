@@ -1,19 +1,13 @@
 var User = function(){
 	var parameters = {};
-	var defaultProperty = {
-		id : 0,
-		email : "",
-		prename: "",
-		lastname: "",
-		username: "",
-		password: ""
-	}
+
 	if(arguments[0]) parameters = arguments[0];
 
-	for(var index in defaultProperty){
-		console.log("index: " + index);
+	console.log('User: ');
+	console.log(User.prototype);
+
+	for(var index in User.prototype){
 		if(parameters[index]){
-			console.log("parameter object: " + parameters.index);
 			this[index] = parameters[index];
 		}
 	}

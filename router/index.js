@@ -23,8 +23,6 @@ exports.createRouter = function(models){
 		this.post('/auth/user').bind(function (req, res, data){
 			var user = new models.user(data);
 
-			console.log(user);
-
 			user.Insert(res, user, callback);
 		});
 	});
