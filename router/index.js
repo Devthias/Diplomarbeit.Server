@@ -24,6 +24,11 @@ exports.createRouter = function(models){
 
 			user.Insert(res, user, callback);
 		});
+		this.put('/auth/user').bind(function (req, res, data){
+			var user = new models.user(data);
+
+			user.Update(res, user, callback);
+		});
 	});
 
 	var callback = function(res, result){

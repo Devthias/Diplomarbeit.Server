@@ -10,7 +10,10 @@ var app = express();
 
 GLOBAL.repository = repository;
 
-app.use('/auth', express.basicAuth(authenticator.authenticateUser));
+app.use('/auth', express.basicAuth(function(user, pass, callback) {
+ var result = authenticator.authenticateUser(user, pass);
+ callback(null /* error */, result);
+}));
 
 app.use(function(req, res, next){
   var body = "";

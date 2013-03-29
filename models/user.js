@@ -18,21 +18,21 @@ User.prototype.password = "";
 
 User.prototype.SelectAll = function(res, callback){
 	repository.Write('SELECT * FROM user', function(result){
-		console.log(result);
-		console.log(res);
 		callback(res, result);
 	});
 };
 
 User.prototype.SelectByID = function(res, id, callback){
 	repository.Write('SELECT * FROM user WHERE ID ='+id, function(result){
-		console.log(result);
 		callback(res, result);
 	});
 };
 
 User.prototype.Insert = function(res, data, callback){
-		console.log(data);
+		callback(res, "test");
+};
+
+User.prototype.Update = function(res, data, callback){
 		callback(res, "test");
 };
 

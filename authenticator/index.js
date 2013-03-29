@@ -1,4 +1,15 @@
 exports.authenticateUser = function(user, pass){
-	console.log('authenticator called...');
-	return user === 'user' && pass ==='1234';
+
+	return true;
+
+	repository.Write('SELECT * FROM user WHERE username ="'+ user + '"', function(result){
+
+		if(result === undefined) return false;
+
+		if(result[0].password === pass){
+			return true;
+		}
+		return false;
+	});
+
 };
